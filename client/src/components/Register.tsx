@@ -15,6 +15,7 @@ interface IFormInput {
 const Register = (): JSX.Element => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const schema = yup.object().shape({
     name: yup.string().required().label("Full name"),
@@ -37,12 +38,14 @@ const Register = (): JSX.Element => {
   });
 
   const submitHandler = async (data: any) => {
+    setIsLoading(true);
     const res = await axios.post("/api/register", data);
 
     if (res.data && res.data.errorCode === 1)
       setSuccessMessage(res.data.message);
     else setErrorMessage(res.data.message);
 
+    setIsLoading(false);
     reset();
   };
 
@@ -81,12 +84,16 @@ const Register = (): JSX.Element => {
           <p className="error">{errors.passwordConfirm?.message}</p>
         </div>
         <div className="form__submit">
-          <button type="submit" className="btn__submit">
-            Register
+          <button
+            type="submit"
+            className="btn__submit"
+            disabled={isLoading ? true : false}
+          >
+            {!isLoading ? "Register" : "Registering..."}
           </button>
         </div>
         <div className="registered__link">
-          <Link to="/list">See registed user list</Link>
+          <Link to="/list">See registered user list</Link>
         </div>
       </form>
     </div>
