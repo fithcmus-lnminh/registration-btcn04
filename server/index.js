@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import connectDb from "./config/db.js";
 import User from "./model/user.js";
 import bcrypt from "bcryptjs";
+import path from "path";
 
 app.use(express.json());
 
@@ -69,5 +70,14 @@ app.get("/api/users", async (req, res) => {
     data: users,
   });
 });
+
+const __dirname = path.resolve();
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.listen(port, () => console.log(`The app is listening on port ${port}!`));
