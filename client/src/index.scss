@@ -1,0 +1,101 @@
+body {
+  background-image: url("https://picsum.photos/1500");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+}
+
+.form {
+  &__wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__container {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 16px 32px;
+    width: 25%;
+  }
+  &__title {
+    text-align: center;
+    font-size: 28px;
+    margin: 16px 0;
+  }
+  &__control {
+    display: flex;
+    flex-direction: column;
+    margin: 16px 0;
+  }
+  &__input {
+    height: 30px;
+    border: 1px solid #000;
+    border-radius: 4px;
+    padding: 0 8px;
+  }
+  &__submit {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+  }
+}
+
+.btn {
+  &__submit {
+    padding: 8px 48px;
+    border-radius: 16px;
+    border: transparent;
+    background-color: rgb(25, 48, 164);
+    color: #fff;
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(20, 37, 118);
+    }
+  }
+}
+
+.message {
+  &__error {
+    color: red;
+    text-align: center;
+  }
+  &__success {
+    color: green;
+    text-align: center;
+    white-space: pre-wrap;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  margin: 0;
+}
+
+.registered {
+  &__link {
+    text-align: center;
+  }
+}
+
+.register {
+  &__link {
+    text-align: center;
+    margin: 8px 0;
+  }
+}
+
+.users {
+  &__container {
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 16px 32px;
+    width: 50%;
+  }
+  &__table {
+    width: 100%;
+    & th {
+      text-align: left;
+    }
+  }
+}
